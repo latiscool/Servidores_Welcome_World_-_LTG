@@ -31,7 +31,7 @@ const requestListener = (req, res) => {
       'utf-8',
       (err) => {
         if (err) {
-          return console.log(err);
+          return console.log('Archivo no se encontro ' + err);
         }
         res.write(`Se ha creado el archivo ${nombreArchivo} con exito!`);
         res.end();
@@ -42,7 +42,7 @@ const requestListener = (req, res) => {
   if (req.url.includes('/leer')) {
     fs.readFile(leerArchivo, 'utf-8', (err, data) => {
       if (err) {
-        return console.log(err);
+        return console.log('Archivo no se encontro ' + err);
       }
       console.log(`El archivo ${leerArchivo} fue leido con exito`);
       res.write(data);
@@ -53,7 +53,7 @@ const requestListener = (req, res) => {
   if (req.url.includes('/renombrar')) {
     fs.rename(oldArchivo, newArchivo, (err) => {
       if (err) {
-        return console.log(err);
+        return console.log('Archivo no se encontro ' + err);
       }
       res.write(`El archivo ${oldArchivo} fue renombrado por ${newArchivo}`);
       res.end();
@@ -70,7 +70,7 @@ const requestListener = (req, res) => {
     setTimeout(() => {
       fs.unlink(eliminarArchivo, (err) => {
         if (err) {
-          return console.log(err);
+          return console.log('Archivo no se encontro ' + err);
         }
         res.end(` El archivo ${eliminarArchivo} fue eliminado con exito`);
       });
